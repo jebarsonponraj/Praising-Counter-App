@@ -1,0 +1,42 @@
+
+
+.counter-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.logo-heading{
+    font-size: 2rem;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.icon-container{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.add-icon{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    /* margin-bottom: -85px; */
+}
+
+.counter-btn{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: none;
+    background-color: dodgerblue;
+}
