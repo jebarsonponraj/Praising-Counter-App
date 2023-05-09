@@ -1,18 +1,21 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "./mainCounter.css";
-import { GrAddCircle } from 'react-icons/gr';
+
 import { GrPowerReset } from 'react-icons/gr';
 import { HiMenu } from 'react-icons/hi';
+import { Fragment } from "react";
+import { Link } from "react-router-dom";
+import PopUp from "../popup/PopUp";
 
 
 
 
-const MainCounter = () => {
+const MainCounter = ({addToDo}) => {
 
     const [counter, setCounter] = useState(0);
-    const [limit, setLimit]  = useState(" ");
+    const [limit, setLimit]  = useState("");
 
-    const [finalLimit, setFinalLimit] = useState(" ");
+    const [finalLimit, setFinalLimit] = useState("");
 
 
 
@@ -23,11 +26,11 @@ const MainCounter = () => {
     }
 
 
-
+   
 
     const handleChange = (event) =>{
         setLimit(event.target.value);
-        setFinalLimit(event.target.value);
+        // setFinalLimit(event.target.value);
     }
 
     const handleLimit = () =>{
@@ -36,13 +39,15 @@ const MainCounter = () => {
     }
 
     const lapLimit = Number(finalLimit);
-    console.log(lapLimit);
+    console.log(counter);
     if(counter !== 0 && counter % lapLimit === 0){
         navigator.vibrate(1000);
     }
 
     const handleReset = () =>{
         setCounter(0);
+        setFinalLimit(" ");
+        setLimit(" ");
         
     }
 
@@ -50,24 +55,27 @@ const MainCounter = () => {
     <div>
     <div className="icon-container">
     <GrPowerReset className="add-icon" onClick={handleReset}/>
-    <GrAddCircle className="add-icon"/>
-    <HiMenu className="add-icon"/>
-
-    
+    <PopUp counter={counter} addToDo={addToDo}/>
+    <Link to="/counterList">
+        <HiMenu className="add-icon"/>
+    </Link>
 
     </div>
     <div className="counter-container">
     <div className="nav-container">
     <h1 className="logo-heading">Praising Counter</h1>
+    {finalLimit !== "" ? <p className="lap-limit">{`Lap Limit: ${finalLimit}`}</p> : ""}
+    
     </div>
-    <div>
+    <div className={`${finalLimit !== "" ? "limit-input-container" : ""}`}> 
     <input type="number" className="limit-input" value={limit} onChange={handleChange}/>
     <button onClick={handleLimit}>Set Limit</button>
     </div>
     <button className="counter-btn" onClick={handleCount} >{counter}</button>
     </div>
+
     </div>
   )
 }
 
-export default MainCounter
+export default MainCounter;
