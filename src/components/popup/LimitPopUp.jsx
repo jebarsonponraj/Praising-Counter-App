@@ -2,60 +2,54 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { GrAddCircle } from 'react-icons/gr';
+import { TbEdit } from "react-icons/tb";
+
+import "./popup.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const PopUp = ({counter, addToDo}) => {
+const LimitPopUp = ({finalLimit, setFinalLimit}) => {
   const [show, setShow] = useState(false);
-  const [counterText, setTextHeading] = useState("");
+//   const [editLimit, setEditLimit] = useState("");
 
 
   const handleChange = (e) =>{
-    setTextHeading(e.target.value);
+    setFinalLimit(e.target.value);
   }
 
-  const handleClose = (event) => {
-    event.preventDefault();
+  const handleClose = () => {
     setShow(false);
-    addToDo(counterText, counter);
-    console.log(counterText)
-    setTextHeading("")
+    // addToDo(counterText, counter);
+    // console.log(counterText)
+    // setTextHeading("")
   };
   const handleShow = () => setShow(true);
   
 
   return (
     <>
-      <GrAddCircle className="add-icon"  onClick={handleShow}/>
+      <TbEdit className="add-icon edit"  onClick={handleShow}/>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Counter List</Modal.Title>
+          <Modal.Title>Edit Limit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
 
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Enter List Name</Form.Label>
-              <Form.Control onChange={handleChange} value={counterText}/>
-            </Form.Group>
+           
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Enter Limit</Form.Label>
               <Form.Control
                 type="number"
-                disabled
-                value={counter}
-                
+                value={finalLimit}
+                onChange={handleChange}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button className='bg-black' onClick={handleClose}>
             Save
           </Button>
 
@@ -65,7 +59,7 @@ const PopUp = ({counter, addToDo}) => {
   );
 }
 
-export default PopUp;
+export default LimitPopUp;
 
 
 

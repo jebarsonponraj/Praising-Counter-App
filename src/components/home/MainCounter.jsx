@@ -3,9 +3,14 @@ import "./mainCounter.css";
 
 import { GrPowerReset } from 'react-icons/gr';
 import { HiMenu } from 'react-icons/hi';
-import { Fragment } from "react";
+
+import 'flowbite'
 import { Link } from "react-router-dom";
-import PopUp from "../popup/PopUp";
+import CounterListPopUp from "../popup/CounterListPopUp";
+import LimitPopUp from "../popup/LimitPopUp";
+
+import Dropdown from "../dropdown/Dropdown";
+
 
 
 
@@ -15,7 +20,7 @@ const MainCounter = ({addToDo}) => {
     const [counter, setCounter] = useState(0);
     const [limit, setLimit]  = useState("");
 
-    const [finalLimit, setFinalLimit] = useState("");
+    const [finalLimit, setFinalLimit] = useState(0);
 
 
 
@@ -46,32 +51,44 @@ const MainCounter = ({addToDo}) => {
 
     const handleReset = () =>{
         setCounter(0);
-        setFinalLimit(" ");
-        setLimit(" ");
+        setFinalLimit(0);
+        setLimit(0);
         
     }
 
   return (
     <div>
     <div className="icon-container">
+    <div className="icons">
+
+
     <GrPowerReset className="add-icon" onClick={handleReset}/>
-    <PopUp counter={counter} addToDo={addToDo}/>
+    <CounterListPopUp counter={counter} addToDo={addToDo}/>
+
     <Link to="/counterList">
         <HiMenu className="add-icon"/>
     </Link>
+    </div>
+    <div className="d-menu">
+    <Dropdown color="white"/>
+    </div>
 
     </div>
     <div className="counter-container">
     <div className="nav-container">
     <h1 className="logo-heading">Praising Counter</h1>
-    {finalLimit !== "" ? <p className="lap-limit">{`Lap Limit: ${finalLimit}`}</p> : ""}
+    {/* {finalLimit !== "" ?  : ""} */}
     
     </div>
-    <div className={`${finalLimit !== "" ? "limit-input-container" : ""}`}> 
-    <input type="number" className="limit-input" value={limit} onChange={handleChange}/>
-    <button onClick={handleLimit}>Set Limit</button>
+    <div className="flex flex-row justify-center align-items-center gap-2"> 
+    {/* <input type="number" className="limit-input" value={limit} onChange={handleChange}/> */}
+    <p className="lap-limit">{`Lap Limit: ${finalLimit}`} </p>
+    <LimitPopUp limit={finalLimit} setFinalLimit={setFinalLimit}/>
+    {/* <TbEdit onClick={handleLimit}/> */}
     </div>
-    <button className="counter-btn" onClick={handleCount} >{counter}</button>
+    <button className="counter-btn" onClick={handleCount} >
+        {counter}
+    </button>
     </div>
 
     </div>
