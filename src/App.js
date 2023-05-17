@@ -5,7 +5,7 @@ import CounterList from "./components/counterList/CounterList";
 import Settings from "./components/settings/Settings";
 import { useState,useEffect } from "react";
 import {v4 as uuidv4} from "uuid";
-import "./app.css"
+import "./index.css"
 uuidv4();
 
 
@@ -42,12 +42,6 @@ const App = () => {
     const deleteToDo = (id) => {
         setListCounter(listCounters.filter((todo) => todo.id !== id));
       };
-
-    useEffect(() => {
-        console.log(listCounters);
-        // console.log("Log of Local Storage");
-        // console.log(localStorage.getItem("counters"));
-      });
 
   return (
         <Routes>

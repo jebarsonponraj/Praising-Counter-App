@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { GrAddCircle } from 'react-icons/gr';
+import neuAdd from "../../assets/neuAdd.svg"
+import close from "../../assets/close.svg";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PopUp = ({counter, addToDo}) => {
@@ -15,22 +17,26 @@ const PopUp = ({counter, addToDo}) => {
   }
 
   const handleClose = (event) => {
-    event.preventDefault();
-    counterText&& setShow(false);
-    counterText && addToDo(counterText, counter);
+    setShow(!show);
     console.log(counterText)
-    setTextHeading("")
   };
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShow(!show);
+
+  const handleSaveClose = () =>{
+    counterText && setShow(!show);
+    counterText && addToDo(counterText, counter);
+    setTextHeading(" ");
+  }
   
 
   return (
     <>
-      <GrAddCircle className="add-icon"  onClick={handleShow}/>
+      <img src={neuAdd} onClick={handleShow}/>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <Modal  show={show} onHide={handleClose}>
+        <Modal.Header className='text-black'>
           <Modal.Title>Counter List</Modal.Title>
+        <img src={close} alt="close-icon" onClick={handleClose}/>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -44,7 +50,7 @@ const PopUp = ({counter, addToDo}) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Count Number</Form.Label>
               <Form.Control
                 type="number"
                 disabled
@@ -56,7 +62,7 @@ const PopUp = ({counter, addToDo}) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button className='bg-black' onClick={handleSaveClose}>
             Save
           </Button>
 

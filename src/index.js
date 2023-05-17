@@ -5,7 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 
-import "./app.css"
+import "./index.css"
 import App from "./App"
 
 

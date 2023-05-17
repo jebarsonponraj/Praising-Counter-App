@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import "./mainCounter.css";
 
-import { GrPowerReset } from 'react-icons/gr';
-import { HiMenu } from 'react-icons/hi';
-
+import neu_btn from "../../assets/neu_btn.svg";
+import neu_Menu from "../../assets/neuMenu.svg";
+import neu_Reset from "../../assets/neuReset.svg";
 import 'flowbite'
 import { Link } from "react-router-dom";
 import CounterListPopUp from "../popup/CounterListPopUp";
@@ -35,7 +35,6 @@ const MainCounter = ({addToDo}) => {
 
     const handleChange = (event) =>{
         setLimit(event.target.value);
-        // setFinalLimit(event.target.value);
     }
 
     const handleLimit = () =>{
@@ -44,7 +43,7 @@ const MainCounter = ({addToDo}) => {
     }
 
     const lapLimit = Number(finalLimit);
-    console.log(counter);
+
     if(counter !== 0 && counter % lapLimit === 0){
         navigator.vibrate(1000);
     }
@@ -55,39 +54,41 @@ const MainCounter = ({addToDo}) => {
         setLimit(0);
         
     }
-
-  return (
-    <div>
-    <div className="icon-container">
+    
+    return (
+    <div className="lg:w-1/2 m-auto">
+      <h1 className="text-tealish-blue text-2xl p-2 font-inter font-medium text-center">Praising Counter</h1>
+    <div className="icon-container flex lg:justify-center lg:justify-items-center">
     <div className="icons">
 
 
-    <GrPowerReset className="add-icon" onClick={handleReset}/>
+    <img src={neu_Reset} alt="reset-button" onClick={handleReset}/>
     <CounterListPopUp counter={counter} addToDo={addToDo}/>
 
     <Link to="/counterList">
-        <HiMenu className="add-icon"/>
+        <img src={neu_Menu} alt="menu-button"/>
     </Link>
     </div>
-    <div className="d-menu">
+    {/* <div className="d-menu">
     <Dropdown color="white"/>
-    </div>
+    </div> */}
 
     </div>
     <div className="counter-container">
     <div className="nav-container">
-    <h1 className="logo-heading">Praising Counter</h1>
-    {/* {finalLimit !== "" ?  : ""} */}
+
     
     </div>
     <div className="flex flex-row justify-center align-items-center gap-2"> 
-    {/* <input type="number" className="limit-input" value={limit} onChange={handleChange}/> */}
+
     <p className="lap-limit">{`Lap Limit: ${finalLimit}`} </p>
     <LimitPopUp limit={finalLimit} setFinalLimit={setFinalLimit}/>
-    {/* <TbEdit onClick={handleLimit}/> */}
+
     </div>
-    <button className="counter-btn" onClick={handleCount} >
-        {counter}
+    <button  onClick={handleCount} className="relative flex justify-center items-center" >
+        <h3 className="text-7xl font-semibold text-tealish-blue font-inter absolute">{counter}</h3>
+        <img src={neu_btn} className="w-96 h-96" alt="Btn" />
+        
     </button>
     </div>
 

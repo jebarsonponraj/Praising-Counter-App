@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { TbEdit } from "react-icons/tb";
+import neuEdit from "../../assets/neuEdit.svg";
+import close from "../../assets/close.svg";
 
 import "./popup.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LimitPopUp = ({finalLimit, setFinalLimit}) => {
   const [show, setShow] = useState(false);
-//   const [editLimit, setEditLimit] = useState("");
-
 
   const handleChange = (e) =>{
     setFinalLimit(e.target.value);
@@ -18,20 +17,19 @@ const LimitPopUp = ({finalLimit, setFinalLimit}) => {
 
   const handleClose = () => {
     setShow(false);
-    // addToDo(counterText, counter);
-    // console.log(counterText)
-    // setTextHeading("")
+
   };
   const handleShow = () => setShow(true);
   
 
   return (
     <>
-      <TbEdit className="add-icon edit"  onClick={handleShow}/>
+      <img src={neuEdit} className="w-5 h-5 drop-shadow"  onClick={handleShow}/>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Edit Limit</Modal.Title>
+          <img src={close} alt="close-icon" onClick={handleClose}/>
         </Modal.Header>
         <Modal.Body>
           <Form>
